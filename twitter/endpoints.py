@@ -40,12 +40,5 @@ def get_likes(user_id, pagination_token=None):
     media = response.json().get("includes", {}).get("media", [])
     users = response.json().get("includes", {}).get("users", [])
     next_token = response.json().get("meta", {}).get("next_token", None)
-    """
-    try:
-        likes = response.json()["data"]
-        next_token = response.json()["meta"].get("next_token")
-    except:
-        likes = []
-        next_token = None
-    """
+
     return likes, media, users, next_token
