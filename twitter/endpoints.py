@@ -14,5 +14,16 @@ def get_user_id(twitter_username):
 
     return user_id
 
+def get_likes(user_id):
+    url = f"https://api.twitter.com/2/users/{user_id}/liked_tweets"
+
+    headers = {"authorization": f'Bearer {env["TWITTER_BEARER_TOKEN"]}'}
+
+    response = requests.request("GET", url, headers=headers)
+    likes = response.json()["data"]
+
+    return likes
+
 user_id = get_user_id("NawazGafar")
-print(user_id)
+likes = get_likes(user_id)
+print(likes)
