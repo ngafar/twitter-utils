@@ -1,7 +1,6 @@
 from twitter import endpoints
 from utils import export 
 
-'''
 user_id = endpoints.get_user_id("NawazGafar")
 
 all_likes = []
@@ -15,6 +14,5 @@ while True:
         break
 
 print(len(all_likes))
-'''
 
-export.list_to_json([1,2,3])
+export.list_to_json(all_likes)
