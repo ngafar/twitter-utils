@@ -19,7 +19,7 @@ def get_user_id(twitter_username):
 def get_likes(user_id, pagination_token=None):
     endpoint = url + f"/{user_id}/liked_tweets"
     params_expansions = "?expansions=attachments.media_keys,author_id"
-    params_media_fields = "&media.fields=alt_text,preview_image_url,type,url"
+    params_media_fields = "&media.fields=alt_text,preview_image_url,type,url,variants"
     params_tweet_fields = "&tweet.fields=created_at,referenced_tweets,source"
     params_user_fields = "&user.fields=id,name,profile_image_url,username"
 
