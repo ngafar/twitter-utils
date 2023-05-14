@@ -10,6 +10,7 @@ else:
 
 def list_to_json(list):
     current_date = datetime.datetime.now().strftime("%Y-%m-%d_%H%M%S")
+    os.mkdir(f"./output/{current_date}")
 
-    with open(f"./output/likes_{current_date}.json", "w") as f:
+    with open(f"./output/{current_date}/likes.json", "w") as f:
         json.dump(list, f, indent=4)
