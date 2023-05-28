@@ -1,5 +1,5 @@
 from twitter import endpoints
-from utils import export 
+from utils import export, tweet_matcher
 
 def get_likes(twitter_username):
     user_id = endpoints.get_user_id(twitter_username)
@@ -17,23 +17,7 @@ def get_likes(twitter_username):
 
         if pagination_token is None:
             break
+    
+    all_likes = tweet_matcher.matching_tweet_finder(all_likes, all_media, all_users)
 
-    for tweet in all_likes:
-        # look for matching media
-        try:
-            media_keys = tweet["attachments"]["media_keys"]
-
-            for media in all_media:
-                if media["media_key"] in media_keys:
-                    tweet["media"] = media
-        except:
-            pass
-        
-        # look for matching user
-        author_id = tweet["author_id"]
-
-        for user in all_users:
-            if user["id"] == author_id:
-                tweet["author"] = user
-                
     export.list_to_json(all_likes)
